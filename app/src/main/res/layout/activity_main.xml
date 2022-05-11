@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/black"
+    tools:ignore="ExtraText">
+
+
+    <ImageView
+        android:id="@+id/iv_logo_green_flag"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:contentDescription="@string/logo_green_flag_desc"
+        android:src="@drawable/logo_green_flag"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_right"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_left"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_central_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="@string/central_text_headline"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:fontFamily="@font/museo_sans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/guideline_vert_left"
+        app:layout_constraintRight_toLeftOf="@id/guideline_vert_right"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_tick_1"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/tick"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_left"
+        app:layout_constraintTop_toBottomOf="@id/tv_central_text" />
+
+    <TextView
+        android:id="@+id/tv_check_text_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:textSize="16sp"
+        android:text="@string/txt_car_health"
+        android:textColor="@color/white"
+        android:fontFamily="@font/museo_sans"
+        app:layout_constraintLeft_toRightOf="@id/iv_tick_1"
+        app:layout_constraintRight_toLeftOf="@id/guideline_vert_right"
+        app:layout_constraintTop_toBottomOf="@id/tv_central_text" />
+
+    <ImageView
+        android:id="@+id/iv_tick_2"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/tick"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_left"
+        app:layout_constraintTop_toBottomOf="@id/tv_check_text_1" />
+
+    <TextView
+        android:id="@+id/tv_check_text_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:textSize="16sp"
+        android:text="@string/txt_request_rescue_online"
+        android:textColor="@color/white"
+        android:fontFamily="@font/museo_sans"
+        app:layout_constraintLeft_toRightOf="@id/iv_tick_2"
+        app:layout_constraintRight_toLeftOf="@id/guideline_vert_right"
+        app:layout_constraintTop_toBottomOf="@id/tv_check_text_1" />
+
+    <ImageView
+        android:id="@+id/iv_tick_3"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/tick"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_left"
+        app:layout_constraintTop_toBottomOf="@id/tv_check_text_2" />
+
+    <TextView
+        android:id="@+id/tv_check_text_3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:textSize="16sp"
+        android:text="@string/txt_policy_info"
+        android:textColor="@color/white"
+        android:fontFamily="@font/museo_sans"
+        app:layout_constraintLeft_toRightOf="@id/iv_tick_3"
+        app:layout_constraintRight_toLeftOf="@id/guideline_vert_right"
+        app:layout_constraintTop_toBottomOf="@id/tv_check_text_2" />
+
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@drawable/gradient_button_background"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_wide_left"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_wide_right"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/btn_create_account"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/museo_sans"
+            android:gravity="center"
+            android:text="@string/txt_create_account"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="60dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="60dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_wide_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="30dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_wide_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="30dp" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateAccountActivity"
+    android:background="@color/black">
+
+    <RelativeLayout
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/v_underline_headline">
+
+        <ImageView
+            android:id="@+id/btn_back_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_btn_image"
+            android:contentDescription="@string/description" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tv__create_account_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_create_account"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/museo_sans"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_left"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_right"/>
+
+    <View
+        android:id="@+id/v_underline_headline"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="80dp"
+        android:background="@color/grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_email_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_email"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/museo_sans"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_left"
+        app:layout_constraintTop_toBottomOf="@id/v_underline_headline"/>
+
+    <EditText
+        android:id="@+id/et_email_textbox"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:background="@color/white"
+        android:textSize="22sp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/museo_sans"
+        app:layout_constraintTop_toBottomOf="@id/tv_email_address"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_left"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_right" />
+
+    <!--
+    -
+    -
+    -
+    Below is the error pop-up for an email that already has an account
+    -
+    -->
+
+    <TextView
+        android:id="@+id/tv_email_already_has_account"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_email_already_has_account"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:layout_marginTop="16dp"
+        android:drawableLeft="@drawable/cross"
+        android:background="@drawable/red_error_message_rectangle"
+        android:visibility="invisible"
+        android:fontFamily="@font/museo_sans"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_left"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_right"
+        app:layout_constraintTop_toBottomOf="@id/et_email_textbox"/>
+
+    <TextView
+        android:id="@+id/tv_create_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_create_password"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/museo_sans"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_left"
+        app:layout_constraintTop_toBottomOf="@id/et_email_textbox"/>
+
+    <EditText
+        android:id="@+id/et_create_password"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:background="@color/white"
+        android:textSize="22sp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/txt_see_criteria"
+        android:fontFamily="@font/museo_sans"
+        app:layout_constraintTop_toBottomOf="@id/tv_create_password"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_left"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_right" />
+
+    <TextView
+        android:id="@+id/tv_repeat_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_repeat_password"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/museo_sans"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_left"
+        app:layout_constraintTop_toBottomOf="@id/et_create_password"/>
+
+    <EditText
+        android:id="@+id/et_repeat_password"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:background="@color/white"
+        android:textSize="22sp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/museo_sans"
+        app:layout_constraintTop_toBottomOf="@id/tv_repeat_password"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_left"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_right" />
+
+    <!--
+    -
+    -
+    -
+    -
+    Next two TextView blocks are for if passwords are not correct.
+    -
+    -->
+
+    <TextView
+        android:id="@+id/tv_password_invalid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/txt_password_not_valid"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:fontFamily="@font/museo_sans"
+        android:drawableLeft="@drawable/cross"
+        android:background="@drawable/red_error_message_rectangle"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_vert_left"
+        app:layout_constraintRight_toRightOf="@id/guideline_vert_right"
+        app:layout_constraintTop_toBottomOf="@id/et_repeat_password" />
+
+    <TextView
+        android:id="@+id/tv_passwords_do_not_match"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/txt_passwords_do_not_match"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:fontFamily="@font/museo_sans"
+        android:drawableLeft="@drawable/cross"
+        android:background="@drawable/red_error_message_rectangle"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_vert_left"
+        app:layout_constraintRight_toRightOf="@id/guideline_vert_right"
+        app:layout_constraintTop_toBottomOf="@id/et_repeat_password" />
+
+    <TextView
+        android:id="@+id/tv_password_requirements"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginTop="36dp"
+        android:text="@string/txt_password_requirements"
+        android:textSize="18sp"
+        android:fontFamily="@font/museo_sans"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_left"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_right"
+        app:layout_constraintTop_toBottomOf="@id/et_repeat_password" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@drawable/gradient_button_background"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintStart_toStartOf="@id/guideline_vert_left"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vert_right"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:gravity="center"
+            android:text="@string/txt_next"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:fontFamily="@font/museo_sans" />
+
+    </RelativeLayout>
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="30dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vert_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="30dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">ThomasMitchellGreenFlag</string>
+    <string name="logo_green_flag_desc">Green Flag logo</string>
+    <string name="central_text_headline">GreenFlag customers can create an account to access</string>
+    <string name="txt_car_health">Car health updates</string>
+    <string name="txt_request_rescue_online">Request a rescue online</string>
+    <string name="txt_policy_info">Policy information</string>
+    <string name="txt_create_account">Create an account</string>
+    <string name="txt_email">Email Address</string>
+    <string name="txt_create_password">Create password</string>
+    <string name="txt_repeat_password">Repeat password</string>
+    <string name="txt_password_requirements">Your password should have a minimum of 8 characters and contain at least one number, one uppercase and one lowercase letter. You can use special characters.</string>
+    <string name="txt_next">Next</string>
+    <string name="txt_see_criteria">See criteria below</string>
+    <string name="description">Back button to return to main activity</string>
+    <string name="txt_passwords_do_not_match">Your passwords don\'t match</string>
+    <string name="txt_password_not_valid">One of the passwords you entered wasn\'t valid</string>
+    <string name="txt_email_already_has_account">An account already exists for this email address</string>
+</resources>
