@@ -3,7 +3,10 @@ package com.example.thomasmitchellgreenflag;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
@@ -18,7 +21,7 @@ import java.util.regex.Pattern;
 public class CreateAccountActivity extends AppCompatActivity {
 
     ImageView btnBackButton;
-    static final Pattern PASSWORD_PATTERN =
+    private static final Pattern PASSWORD_REGEX =
         Pattern.compile(
                 "^" +               // start of string
                 "(?=\\S+$)" +       // no white space
@@ -27,11 +30,21 @@ public class CreateAccountActivity extends AppCompatActivity {
                 "(?=.*[A-Z])" +     // at least one upper case
                 "(?=.*[0-9])"
         );
+    private static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+
     EditText email;
     EditText password1;
     EditText password2;
 
+    TextView emailErrorMessage;
+    TextView passwordErrorMessage;
+    TextView passwordErrorMessage2;
+
     TextView nextButton;
+
+    private boolean emailAccepted;
+    private boolean passwordAccepted;
+    private boolean passwordsMatch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +57,9 @@ public class CreateAccountActivity extends AppCompatActivity {
         password2 = findViewById(R.id.et_repeat_password);
 
         nextButton = findViewById(R.id.btn_next);
+        emailErrorMessage = findViewById(R.id.tv_email_already_has_account);
+        passwordErrorMessage = findViewById(R.id.tv_password_invalid);
+        passwordErrorMessage2 = findViewById(R.id.tv_passwords_do_not_match);
 
         btnBackButton.setOnClickListener(view -> {
             Intent intent = new Intent();
@@ -56,97 +72,145 @@ public class CreateAccountActivity extends AppCompatActivity {
          */
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                confirmInputs(view);
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "Account successfully created!", Toast.LENGTH_LONG).show();
             }
         });
-    }
 
-    protected boolean validateEmail() {
+        email.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-        // extract input from EditText
-        String emailInput = email.getText().toString().trim();
-
-        // check if the email field is empty
-        if (emailInput.isEmpty()) {
-            /**
-             * code here to display empty email field error message (via TextView)
-             * also make email EditText borders go red
-             */
-            return false;
-        }
-
-        else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
-            /**
-             * code here to display email address not valid error message (via TextView)
-             * also make email EditText borders go red
-             */
-            return false;
-        }
-
-        else {
-            /**
-             * make borders of email EditText go green and show green tick
-             */
-            return true;
-        }
-    }
-
-    protected boolean validatePassword() {
-        String passwordInput = password1.getText().toString().trim();
-
-        // check if password field is empty
-        if (passwordInput.isEmpty()) {
-            /**
-             * code here for empty field error message
-             * also make borders go red
-             */
-            return false;
-        }
-        else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
-            /**
-             * code here for error message saying password doesn't meet requirements
-             * also make borders go red
-             */
-            return false;
-        }
-        else {
-            /**
-             * make borders go green and show green tick
-             */
-            return true;
-        }
-    }
-
-    protected boolean validatePasswordsMatch() {
-        if (validatePassword()) {
-            String passwordInput = password1.getText().toString().trim();
-            String passwordRepeatedInput = password2.getText().toString().trim();
-
-            if (passwordInput != passwordRepeatedInput) {
-                /**
-                 * code to display error message saying passwords don't match
-                 */
-                return false;
             }
-            else {
-                /**
-                 * make borders go green and show green tick
-                 */
-                return true;
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                emailChanged();
+                validateNext();
+            }
+        });
+
+        password1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                passwordChanged();
+                validateNext();
+            }
+        });
+
+        password2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                passwordChanged();
+                validateNext();
+            }
+        });
+
+    }
+
+    private void emailChanged() {
+        String emailAddress = (String) email.getText().toString();
+
+        if (emailAddress.matches(EMAIL_REGEX)){
+            emailAccepted = true;
+
+            email.setBackgroundResource(R.drawable.green_rectangle);
+
+            Drawable tick = email.getContext().getResources().getDrawable(R.drawable.tick, null);
+            email.setCompoundDrawablesWithIntrinsicBounds(null, null, tick, null);
+
+            emailErrorMessage.setVisibility(View.VISIBLE);
         }
         else {
-            return false;
+            emailAccepted = false;
+
+            email.setBackgroundResource(R.drawable.red_rectangle_white_background);
+            email.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+
+            emailErrorMessage.setVisibility(View.VISIBLE);
         }
     }
 
-    public void confirmInputs(View v) {
-        if (!validateEmail() || !validatePassword() || !validatePasswordsMatch()) {
-            return;
+    private void passwordChanged() {
+        String password = (String) password1.getText().toString();
+        String passwordRepeated = (String) password1.getText().toString();
+
+        passwordAccepted = true;
+
+        if (!password.equals(passwordRepeated)) {
+            passwordAccepted = false;
+
+            passwordErrorMessage2.setVisibility(View.VISIBLE);
+        }
+        else {
+            if (!password.matches(String.valueOf(PASSWORD_REGEX))) {
+
+                passwordAccepted = false;
+
+                password1.setBackgroundResource(R.drawable.red_rectangle_white_background);
+
+                passwordErrorMessage.setVisibility(View.VISIBLE);
+            }
         }
 
-        // all inputs are valid, so display toast message.
-        Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show();
+        if (password.equals(passwordRepeated)) {
+            passwordErrorMessage2.setVisibility(View.INVISIBLE);
+
+            password1.setBackgroundResource(R.drawable.green_rectangle);
+            password2.setBackgroundResource(R.drawable.green_rectangle);
+
+            Drawable tick = password1.getContext().getResources().getDrawable(R.drawable.tick, null);
+            password1.setCompoundDrawablesWithIntrinsicBounds(null, null, tick, null);
+            password2.setCompoundDrawablesWithIntrinsicBounds(null, null, tick, null);
+        }
+        else {
+            passwordErrorMessage.setVisibility(View.VISIBLE);
+
+            password1.setBackgroundResource(R.drawable.red_rectangle_white_background);
+            password2.setBackgroundResource(R.drawable.red_rectangle_white_background);
+
+            password1.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+            password2.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+        }
     }
+
+    private void validateNext() {
+        if (emailAccepted && passwordAccepted) {
+            nextButton.setEnabled(true);
+        }
+        else {
+            nextButton.setEnabled(false);
+        }
+    }
+
+
+
+
+
+
 }

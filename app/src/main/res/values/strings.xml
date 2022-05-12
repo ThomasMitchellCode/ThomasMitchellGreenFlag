@@ -15,5 +15,5 @@
     <string name="description">Back button to return to main activity</string>
     <string name="txt_passwords_do_not_match">Your passwords don\'t match</string>
     <string name="txt_password_not_valid">One of the passwords you entered wasn\'t valid</string>
-    <string name="txt_email_already_has_account">An account already exists for this email address</string>
+    <string name="txt_email_invalid">Email is invalid or an account already exists for this email address</string>
 </resources>
